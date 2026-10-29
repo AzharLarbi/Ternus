@@ -1,0 +1,79 @@
+WHAT THIS EXPERIMENT DOES
+
+The program shows the Ternus illusion. Two static images, three items each, alternate on screen. The second image is shifted sideways by one item position, so two positions overlap between the images. Nothing in either image moves, but when they follow one another you may see illusory movement. Some people see all three items travel together, which is called group motion. Others see two items stay put while the outer one jumps from side to side, which is called element motion. We record what the observer reports. There is no correct answer.
+
+There are two stimulus conditions. In DOTS the three items are identical white circles. In SHAPES they are a circle, a triangle and a square. Within a SHAPES sequence the triangle and the square keep their identities at the two overlapping positions, and the circle sits at the opposite ends. Those shapes give extra information about which item in one image aligns with which item in the next. Comparing DOTS and SHAPES therefore lets us ask whether that information changes the illusory motion perception. The condition label only says what was shown, not what the participant should answer: a DOTS trial can get either response (group or element motion), and so can a SHAPES trial.
+
+We also vary the time gap between the two images. This is the interstimulus interval, or ISI, and it takes four values: 0, 50, 500 and 1000 ms. At ISI 0 the second image replaces the first straight away. At any positive ISI the items disappear for that long and only the fixation cross stays on screen. Two stimulus types at four intervals gives eight combinations. The interval can change what you perceive, so report what you actually see rather than trying to produce a particular result.
+
+The experiment has two blocks, one for DOTS and one for SHAPES, 20 trials each, with five trials at every ISI. A full run is 40 trials and should write 40 rows in the data file. Trials are shuffled inside each block. Block order follows the participant number: odd numbers get DOTS first, even numbers get SHAPES first. That way both orders are spread across participants, so the difference between conditions is less tangled up with which one happened to come first. For your final run you will be your own participant.
+
+HOW TO APPROACH THE WORK
+
+Use the Python environment from class, and run the original before you change anything. Watch the display, try both response keys, and locate the data file it writes. That first run gives you something concrete to compare later versions against. Read the code and the paper from Roth et al., looking for places where its recommendations would help this particular program.
+
+Start Git before editing so the original is part of your history. Begin with names. Work out what each object and value stands for, choose names that say what that role is, update every place the old name was used, and run the program again. Commit that checked change. 
+
+Next, gather the experimental parameters together and drop code you don't use. Colors, positions, durations and trial counts should all be easy to find. Ask yourself what would happen if you wanted to change one duration: would you be hunting through several copies of the same number? Try to look at what the program does by hand. Replace each with the Expyriment method that does the job. Commit each meaningful replacement so I can follow your reasoning.
+
+While you develop you can run shorter versions of the blocks (less trials, just to test the code). Before the final run, put it back to 20 trials per block, five per ISI in each condition. Keep the scientific design of the experiment.
+
+THE FINAL RUN AND WHAT TO SEND
+
+Once the improved code works, do one full 40-trial run on yourself. Answer according to what you see. Keep that run's data file apart from your earlier tests so you send the right one.
+
+Open the final .xpd file and look at the trial data. You should find 40 completed rows: 20 DOTS and 20 SHAPES, with five rows at each ISI inside each condition. LEFT should be stored as element and 0; RIGHT as group and 1. Check that the saved condition and ISI match the trial that was actually shown.
+
+Submit your final Python files, the .xpd file from that complete run, git_history.txt, and one paragraph of no more than 20 lines. Use the paragraph to justify at least two or three of the changes that you have done. Point to the relevant principles from Roth et al., what we discussed in class, and your own experience where it helps. Say why those choices make the experiment easier to understand, modify or check. Keep the focus on the decisions you made in this code, not on summarizing the paper.
+
+USING GIT LOCALLY AND OFFLINE
+
+Git records versions of your project on your own computer. Saving a file in your editor changes the working copy; a commit records a checkpoint you can inspect later. The commands below need Git installed, but nothing else: no internet connection, no GitHub account, no online repository. Open a terminal in the folder that holds Ternus.py.
+
+Before editing, record the original code:
+
+git init
+git add Ternus.py
+git commit -m "Save original Ternus code"
+
+If Git asks who you are, set an identity for this repository with git config user.name "Your name" and git config user.email "your@email.example", replacing the examples, then repeat the commit.
+
+For example, once you have renamed variables, run the script and look over the changes. If it checks out, record the step:
+
+python Ternus.py
+git diff
+git add Ternus.py
+git commit -m "Rename stimulus and response variables"
+
+git diff shows edits you haven't staged yet. git add selects a file version for the next commit. git commit records that version under your message. A message should say what changed; "Organize timing parameters" or "Replace manual trial construction" tells me more than "Changes". Repeat the same routine after each meaningful change. When you add another Python file, list its real filename in git add.
+
+At the end, commit any last code changes, then export the history:
+
+git log --reverse --stat -p > git_history.txt
+
+This creates git_history.txt, which shows the commits from first to last with the code changes in each one. Send it with your work. One big final commit won't show the development process, so make your checkpoints while you are working.
+
+GLOSSARY
+
+Preloading: prepares stimuli ahead of presentation.
+Trial: one stimulus-response episode. Expyriment's Trial object holds the factors and stimuli.
+Block: a group of trials. Here each block holds either the DOTS trials or the SHAPES trials.
+Factor / level: a factor is a manipulated variable and a level is one of its values. Together they define the comparisons.
+Experimental condition: one combination of factor levels. Here each stimulus type is tested at each ISI.
+Full factorial: every combination of the chosen factor levels, so all the planned combinations get included.
+Randomization: varies trial order at random, which weakens systematic links between condition and trial position.
+Counterbalancing: spreads condition orders across participants, so order effects don't pile onto one condition.
+Balanced Latin square: orders that balance positions and immediate predecessors. With two blocks, that means AB and BA.
+ISI: the gap between the two stimulus frames. Changing it can change the perceived motion.
+Intertrial interval (ITI): the programmed pause between trials. Here a 500 ms blank separates successive episodes.
+Fixation cross: gives the eye a common place to look, which keeps viewing behavior consistent.
+Refresh rate: screen refreshes per second. At 60 Hz successive refreshes are about 16.7 ms apart, which constrains visual timing.
+Response coding: turns keys into labels and numbers. Consistent coding connects the action to the saved observation.
+Element / group motion: one item appearing to jump versus all of them moving together. These are the two percepts you report.
+Response time: elapsed time from a defined start to the response. Here it starts when the response prompt appears.
+Data / event files: .xpd holds the trial rows you add; event files log software events so you can inspect execution.
+Pilot: a short test of the procedure, checking presentation, responses and saving before real data collection.
+Refactoring: changing code structure while behavior stays the same, which makes later changes and checks easier.
+Git repository: the local project history kept in .git, which lets you inspect and recover committed versions.
+Staging / commit: staging picks file versions and a commit records them. Together they make a checkpoint.
+Diff / log: diff shows changes and log lists commits. Both make the development visible.
