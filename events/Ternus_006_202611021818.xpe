@@ -1,0 +1,59 @@
+#Expyriment 1.0.1 (Python 3.10.9), .xpe-file, coding: UTF-8
+#date: Mon Nov 02 2026 18:18:26
+#sha1: e79b76
+#modules: 
+#display: size=(800, 600), window_mode=False, opengl=2
+#os: uname_result(system='Darwin', node='Azhars-MacBook-Air.local', release='25.6.0', version='Darwin Kernel Version 25.6.0: Fri Jul 31 19:17:12 PDT 2026; root:xnu-12377.161.14~5/RELEASE_ARM64_T8103', machine='arm64')
+Time,Type,Event,Value,Detail,Detail2
+10551,design,log,
+#design: #exp: Ternus experiment
+#design: #dvn: condition,trial,isi_ms,frame_ms,response,group_response,key,rt_ms
+#design: block_cnt,block_id,block_condition,trial_cnt,trial_id,isi_ms
+#design: 0,0,DOTS,0,6,50
+#design: 0,0,DOTS,1,19,1000
+#design: 0,0,DOTS,2,10,500
+#design: 0,0,DOTS,3,16,1000
+#design: 0,0,DOTS,4,9,50
+#design: 0,0,DOTS,5,3,0
+#design: 0,0,DOTS,6,17,1000
+#design: 0,0,DOTS,7,11,500
+#design: 0,0,DOTS,8,13,500
+#design: 0,0,DOTS,9,7,50
+#design: 0,0,DOTS,10,15,1000
+#design: 0,0,DOTS,11,12,500
+#design: 0,0,DOTS,12,14,500
+#design: 0,0,DOTS,13,18,1000
+#design: 0,0,DOTS,14,5,50
+#design: 0,0,DOTS,15,2,0
+#design: 0,0,DOTS,16,4,0
+#design: 0,0,DOTS,17,0,0
+#design: 0,0,DOTS,18,1,0
+#design: 0,0,DOTS,19,8,50
+#design: 1,1,SHAPES,0,4,0
+#design: 1,1,SHAPES,1,9,50
+#design: 1,1,SHAPES,2,19,1000
+#design: 1,1,SHAPES,3,7,50
+#design: 1,1,SHAPES,4,3,0
+#design: 1,1,SHAPES,5,11,500
+#design: 1,1,SHAPES,6,0,0
+#design: 1,1,SHAPES,7,18,1000
+#design: 1,1,SHAPES,8,6,50
+#design: 1,1,SHAPES,9,14,500
+#design: 1,1,SHAPES,10,17,1000
+#design: 1,1,SHAPES,11,5,50
+#design: 1,1,SHAPES,12,8,50
+#design: 1,1,SHAPES,13,12,500
+#design: 1,1,SHAPES,14,15,1000
+#design: 1,1,SHAPES,15,13,500
+#design: 1,1,SHAPES,16,16,1000
+#design: 1,1,SHAPES,17,1,0
+#design: 1,1,SHAPES,18,10,500
+#design: 1,1,SHAPES,19,2,0
+10551,design,logged,
+10551,Experiment,started
+10569,Stimulus,presented,18
+12104,Experiment,paused
+12118,Stimulus,presented,22
+13435,Keyboard,received,y,wait_char
+13435,Experiment,ended
+13451,Stimulus,presented,22

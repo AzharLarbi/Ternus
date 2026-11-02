@@ -83,23 +83,20 @@ for name in ["DOTS", "SHAPES"]:
 
 b1, b2 = blocks
 
-# Stimuli for DOTS trials
-for t in b1.trials:
-    t.add_stimulus(screen1)
-    t.add_stimulus(screen2)
-    t.add_stimulus(screen5)
-    t.add_stimulus(text2)
-    t.add_stimulus(screen5)
-    t.add_stimulus(screen6)
+# screens that both blocks share
+common_stimuli = [screen5, text2, screen5, screen6]
 
-# Stimuli for SHAPES trials
-for t in b2.trials:
-    t.add_stimulus(screen3)
-    t.add_stimulus(screen4)
-    t.add_stimulus(screen5)
-    t.add_stimulus(text2)
-    t.add_stimulus(screen5)
-    t.add_stimulus(screen6)
+# Map each block to its unique first two screens
+block_configurations = [
+    (b1, [screen1, screen2]),
+    (b2, [screen3, screen4])
+]
+
+# Assign stimuli  using iteration
+for block, unique_screens in block_configurations:
+    for t in block.trials:
+        for s in unique_screens + common_stimuli:
+            t.add_stimulus(s)
 
 # Experiment start
 e.add_block(b1)
@@ -118,36 +115,35 @@ e.keyboard.wait(keys=[xpy.misc.constants.K_SPACE])
 for b in e.blocks:
     for t in b.trials:
         v = t.get_factor("isi_ms")
+        
+        # Initial screen
         t.stimuli[2].present()
         e.clock.wait(200)
 
-        for i in range(3):
-            t.stimuli[0].present()
-            e.clock.wait(250)
-            if v > 0:
-                t.stimuli[4].present()
-                e.clock.wait(v)
-
-            t.stimuli[1].present()
-            e.clock.wait(250)
-            if v > 0:
-                t.stimuli[4].present()
-                e.clock.wait(v)
+        # Ternus alternating frames (3 cycles)
+        for _ in range(3):
+            for stim in [t.stimuli[0], t.stimuli[1]]:
+                stim.present()
+                e.clock.wait(250)
+                if v > 0:
+                    t.stimuli[4].present() # ISI blank/cross screen
+                    e.clock.wait(v)
 
         # Response collection
         t.stimuli[3].present()
         k, r = e.keyboard.wait(keys=[xpy.misc.constants.K_LEFT, xpy.misc.constants.K_RIGHT])
 
-        if k == xpy.misc.constants.K_LEFT:
-            a = "element"
-            g = 0
-        else:
-            a = "group"
-            g = 1
+        # Map keyboard input using a dictionary lookup
+        response_map = {
+            xpy.misc.constants.K_LEFT: ("element", 0),
+            xpy.misc.constants.K_RIGHT: ("group", 1)
+        }
+        a, g = response_map.get(k, ("unknown", -1))
 
         # Intertrial interval
         t.stimuli[5].present()
         e.clock.wait(500)
+        
         # Data saving
         e.data.add([b.get_factor("condition"), t.id, v, 250, a, g, k, r])
         e.data.save()
