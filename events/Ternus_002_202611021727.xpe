@@ -1,0 +1,85 @@
+#Expyriment 1.0.1 (Python 3.10.9), .xpe-file, coding: UTF-8
+#date: Mon Nov 02 2026 17:27:29
+#sha1: dcf633
+#modules: 
+#display: size=(800, 600), window_mode=False, opengl=2
+#os: uname_result(system='Darwin', node='Azhars-MacBook-Air.local', release='25.6.0', version='Darwin Kernel Version 25.6.0: Fri Jul 31 19:17:12 PDT 2026; root:xnu-12377.161.14~5/RELEASE_ARM64_T8103', machine='arm64')
+Time,Type,Event,Value,Detail,Detail2
+11570,design,log,
+#design: #exp: Ternus experiment
+#design: #dvn: condition,trial,isi_ms,frame_ms,response,group_response,key,rt_ms
+#design: block_cnt,block_id,block_condition,trial_cnt,trial_id,isi_ms
+#design: 0,0,DOTS,0,8,50
+#design: 0,0,DOTS,1,6,50
+#design: 0,0,DOTS,2,3,0
+#design: 0,0,DOTS,3,12,500
+#design: 0,0,DOTS,4,18,1000
+#design: 0,0,DOTS,5,4,0
+#design: 0,0,DOTS,6,15,1000
+#design: 0,0,DOTS,7,10,500
+#design: 0,0,DOTS,8,0,0
+#design: 0,0,DOTS,9,1,0
+#design: 0,0,DOTS,10,11,500
+#design: 0,0,DOTS,11,16,1000
+#design: 0,0,DOTS,12,19,1000
+#design: 0,0,DOTS,13,9,50
+#design: 0,0,DOTS,14,13,500
+#design: 0,0,DOTS,15,17,1000
+#design: 0,0,DOTS,16,14,500
+#design: 0,0,DOTS,17,7,50
+#design: 0,0,DOTS,18,5,50
+#design: 0,0,DOTS,19,2,0
+#design: 1,1,SHAPES,0,9,50
+#design: 1,1,SHAPES,1,1,0
+#design: 1,1,SHAPES,2,11,500
+#design: 1,1,SHAPES,3,7,50
+#design: 1,1,SHAPES,4,16,1000
+#design: 1,1,SHAPES,5,0,0
+#design: 1,1,SHAPES,6,13,500
+#design: 1,1,SHAPES,7,19,1000
+#design: 1,1,SHAPES,8,6,50
+#design: 1,1,SHAPES,9,17,1000
+#design: 1,1,SHAPES,10,2,0
+#design: 1,1,SHAPES,11,3,0
+#design: 1,1,SHAPES,12,4,0
+#design: 1,1,SHAPES,13,15,1000
+#design: 1,1,SHAPES,14,8,50
+#design: 1,1,SHAPES,15,18,1000
+#design: 1,1,SHAPES,16,10,500
+#design: 1,1,SHAPES,17,5,50
+#design: 1,1,SHAPES,18,12,500
+#design: 1,1,SHAPES,19,14,500
+11570,design,logged,
+11570,Experiment,started
+11585,Stimulus,presented,18
+18145,Keyboard,received,32,wait
+18163,Stimulus,presented,17
+18371,Stimulus,presented,8
+18635,Stimulus,presented,17
+18702,Stimulus,presented,12
+18969,Stimulus,presented,17
+19035,Stimulus,presented,8
+19302,Stimulus,presented,17
+19368,Stimulus,presented,12
+19635,Stimulus,presented,17
+19702,Stimulus,presented,8
+19969,Stimulus,presented,17
+20035,Stimulus,presented,12
+20302,Stimulus,presented,17
+20369,Stimulus,presented,19
+28567,Keyboard,received,1073741904,wait
+28583,Stimulus,presented,20
+29085,Data,saved
+29105,Stimulus,presented,17
+29319,Stimulus,presented,8
+29586,Stimulus,presented,12
+29852,Stimulus,presented,8
+30119,Stimulus,presented,12
+30385,Stimulus,presented,8
+30652,Stimulus,presented,12
+30920,Stimulus,presented,19
+36263,Experiment,paused
+36272,Stimulus,presented,22
+38139,Keyboard,received,y,wait_char
+38139,Experiment,ended
+38154,Stimulus,presented,22

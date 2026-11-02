@@ -6,28 +6,46 @@ e = xpy.design.Experiment(name="Ternus experiment", background_colour=(0, 0, 0),
 e.data_variable_names = ["condition", "trial", "isi_ms", "frame_ms", "response", "group_response", "key", "rt_ms"]
 xpy.control.initialize(e)
 
-# DOTS stimuli
-list1 = []
-screen1 = xpy.stimuli.Canvas(size=(600, 300), colour=(0, 0, 0))
-xpy.stimuli.Circle(radius=20, position=(-120, -50), colour=(255, 255, 255)).plot(screen1)
-xpy.stimuli.Circle(radius=20, position=(-40, -50), colour=(255, 255, 255)).plot(screen1)
-xpy.stimuli.Circle(radius=20, position=(40, -50), colour=(255, 255, 255)).plot(screen1)
+# Constants
+SCREEN_SIZE = (600, 300)
+Background_Color = (0, 0, 0)
+Stimuli_color = (255, 255, 255)
+Y_POS = -50
 
-screen2 = xpy.stimuli.Canvas(size=(600, 300), colour=(0, 0, 0))
-xpy.stimuli.Circle(radius=20, position=(-40, -50), colour=(255, 255, 255)).plot(screen2)
-xpy.stimuli.Circle(radius=20, position=(40, -50), colour=(255, 255, 255)).plot(screen2)
-xpy.stimuli.Circle(radius=20, position=(120, -50), colour=(255, 255, 255)).plot(screen2)
+# Stimulus Factories
+def circle():
+    return xpy.stimuli.Circle(radius=20, colour=Stimuli_color)
+def triangle():
+    return xpy.stimuli.Shape(
+        vertex_list=xpy.misc.geometry.vertices_regular_polygon(3, 54),
+        colour = Stimuli_color
+    )
+def rectangle():
+    return xpy.stimuli.Rectangle(size=(35, 35), colour=Stimuli_color)
 
-# SHAPES stimuli
-screen3 = xpy.stimuli.Canvas(size=(600, 300), colour=(0, 0, 0))
-xpy.stimuli.Circle(radius=20, position=(-120, -50), colour=(255, 255, 255)).plot(screen3)
-xpy.stimuli.Shape(vertex_list=xpy.misc.geometry.vertices_regular_polygon(3, 54), position=(-40, -50), colour=(255, 255, 255)).plot(screen3)
-xpy.stimuli.Rectangle(size=(35, 35), position=(40, -50), colour=(255, 255, 255)).plot(screen3)
+# Screen Configurations
+screen_configs = [
+    # DOTS stimuli (screen 1 and 2)
+    ([-120, -40, 40], [circle, circle, circle]),
+    ([-40, 40, 120], [circle, circle, circle])
 
-screen4 = xpy.stimuli.Canvas(size=(600, 300), colour=(0, 0, 0))
-xpy.stimuli.Shape(vertex_list=xpy.misc.geometry.vertices_regular_polygon(3, 54), position=(-40, -50), colour=(255, 255, 255)).plot(screen4)
-xpy.stimuli.Rectangle(size=(35, 35), position=(40, -50), colour=(255, 255, 255)).plot(screen4)
-xpy.stimuli.Circle(radius=20, position=(120, -50), colour=(255, 255, 255)).plot(screen4)
+    # SHAPES stimuli (screen 3 and 4)
+    ([-120, -40, 40], [circle, triangle, rectangle])
+    ([-40, 40, 120], [triangle, rectangle, circle])
+]
+
+# Generate Screens
+screens = []
+for x_coords, stim_factories in screen_configs:
+    canvas = xpy.stimuli.Canvas(size=SCREEN_SIZE, colour=Background_Color)
+    for x, factory in zip(x_coords, stim_factories):
+        stim = factory()
+        stim.position = (x, Y_POS)
+        stim.plot(canvas)
+    screens.append(canvas)
+
+screen1, screen2, screen3, screen4 = screens
+
 
 # Fixation cross and text screens
 thing1 = xpy.stimuli.FixCross(size=(20, 20), line_width=4, colour=(255, 255, 255))
