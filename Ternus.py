@@ -64,31 +64,24 @@ all_screens = [screen1, screen2, screen3, screen4, screen5, screen6, text1, text
 for scr in all_screens:
     scr.preload()
 
-# DOTS block and trial construction
-b1 = xpy.design.Block(name="DOTS")
-b1.set_factor("condition", "DOTS")
-for v in [0, 0, 0, 0, 0, 50, 50, 50, 50, 50, 500, 500, 500, 500, 500, 1000, 1000, 1000, 1000, 1000]:
-    t = xpy.design.Trial()
-    t.set_factor("isi_ms", v)
-    b1.add_trial(t)
+# Define ISI values as a constant
+ISI_VALUES = [0, 0, 0, 0, 0, 50, 50, 50, 50, 50, 500, 500, 500, 500, 500, 1000, 1000, 1000, 1000, 1000]
 
-# Randomization of DOTS trials
-for i in range(len(b1.trials) - 1, 0, -1):
-    j = random.randint(0, i)
-    b1.trials[i], b1.trials[j] = b1.trials[j], b1.trials[i]
+# Automatically build and randomize blocks using a loop
+blocks = []
+for name in ["DOTS", "SHAPES"]:
+    b = xpy.design.Block(name=name)
+    b.set_factor("condition", name)
+    
+    for v in ISI_VALUES:
+        t = xpy.design.Trial()
+        t.set_factor("isi_ms", v)
+        b.add_trial(t)
+        
+    random.shuffle(b.trials)
+    blocks.append(b)
 
-# SHAPES block and trial construction
-b2 = xpy.design.Block(name="SHAPES")
-b2.set_factor("condition", "SHAPES")
-for v in [0, 0, 0, 0, 0, 50, 50, 50, 50, 50, 500, 500, 500, 500, 500, 1000, 1000, 1000, 1000, 1000]:
-    t = xpy.design.Trial()
-    t.set_factor("isi_ms", v)
-    b2.add_trial(t)
-
-# Randomization of SHAPES trials
-for i in range(len(b2.trials) - 1, 0, -1):
-    j = random.randint(0, i)
-    b2.trials[i], b2.trials[j] = b2.trials[j], b2.trials[i]
+b1, b2 = blocks
 
 # Stimuli for DOTS trials
 for t in b1.trials:
