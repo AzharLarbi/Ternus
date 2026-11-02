@@ -1,0 +1,11 @@
+#Expyriment 1.0.1 (Python 3.10.9), .xpe-file, coding: UTF-8
+#date: Mon Nov 02 2026 18:03:51
+#sha1: f09768
+#modules: 
+#display: size=(800, 600), window_mode=False, opengl=2
+#os: uname_result(system='Darwin', node='Azhars-MacBook-Air.local', release='25.6.0', version='Darwin Kernel Version 25.6.0: Fri Jul 31 19:17:12 PDT 2026; root:xnu-12377.161.14~5/RELEASE_ARM64_T8103', machine='arm64')
+Time,Type,Event,Value,Detail,Detail2
+4783,stderr,received,'Traceback (most recent call last):'
+4783,stderr,received,'  File "/Users/azhardaho/Downloads/Ternus/Ternus.py", line 30, in <module>'
+4784,stderr,received,'    ([-40, 40, 120], [circle, circle, circle])'
+4784,stderr,received,"TypeError: 'tuple' object is not callable"

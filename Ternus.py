@@ -2,7 +2,7 @@ import random
 import expyriment as xpy
 
 # Experiment initialization
-e = xpy.design.Experiment(name="Ternus experiment", background_colour=(0, 0, 0), foreground_colour=(255, 255, 255))
+e = xpy.design.Experiment(name="Ternus experiment")
 e.data_variable_names = ["condition", "trial", "isi_ms", "frame_ms", "response", "group_response", "key", "rt_ms"]
 xpy.control.initialize(e)
 
@@ -27,10 +27,9 @@ def rectangle():
 screen_configs = [
     # DOTS stimuli (screen 1 and 2)
     ([-120, -40, 40], [circle, circle, circle]),
-    ([-40, 40, 120], [circle, circle, circle])
-
+    ([-40, 40, 120], [circle, circle, circle]),
     # SHAPES stimuli (screen 3 and 4)
-    ([-120, -40, 40], [circle, triangle, rectangle])
+    ([-120, -40, 40], [circle, triangle, rectangle]),
     ([-40, 40, 120], [triangle, rectangle, circle])
 ]
 
@@ -56,22 +55,14 @@ text2 = xpy.stimuli.TextScreen(heading="What did you see?", text="LEFT = element
 screen6 = xpy.stimuli.BlankScreen(colour=(0, 0, 0))
 
 # Fixation on stimulus and text screens
-thing1.plot(screen1)
-thing1.plot(screen2)
-thing1.plot(screen3)
-thing1.plot(screen4)
-thing1.plot(text1)
-thing1.plot(text2)
+stim_screens = [screen1, screen2, screen3, screen4, text1, text2]
+for scr in stim_screens:
+    thing1.plot(scr)
 
 # Preloading
-screen1.preload()
-screen2.preload()
-screen3.preload()
-screen4.preload()
-screen5.preload()
-text1.preload()
-text2.preload()
-screen6.preload()
+all_screens = [screen1, screen2, screen3, screen4, screen5, screen6, text1, text2]
+for scr in all_screens:
+    scr.preload()
 
 # DOTS block and trial construction
 b1 = xpy.design.Block(name="DOTS")
